@@ -7,7 +7,9 @@ public class PrimeNumbers {
 
 	public static boolean isPrime(final int number) {
 
-		if (number % 2 == 0 || number <= 1) {
+		if (number == 2) {
+			return true;
+		} else if (number % 2 == 0 || number < 2) {
 			return false;
 		} else {
 			boolean dvs = false;
@@ -23,7 +25,7 @@ public class PrimeNumbers {
 
 	public static Set<Integer> getPrimeNumbers(final int maxNumber) {
 		final LinkedHashSet<Integer> primeNumbers = new LinkedHashSet<>();
-		for (int i = 3; i <= maxNumber; i++) {
+		for (int i = 2; i <= maxNumber; i++) {
 			if (isPrime(i)) {
 				primeNumbers.add(i);
 			}
