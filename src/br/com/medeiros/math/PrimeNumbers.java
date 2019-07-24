@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class PrimeNumbers {
 
-	public static boolean isPrime(final int number) {
+	public static boolean isPrime(final long number) {
 
 		if (number == 2) {
 			return true;
@@ -13,7 +13,7 @@ public class PrimeNumbers {
 			return false;
 		} else {
 			boolean dvs = false;
-			for (int i = number; i > 2; i--) {
+			for (long i = number; i > 2; i--) {
 				dvs = number % (i - 1) != 0;
 				if (!dvs) {
 					return false;
@@ -23,9 +23,9 @@ public class PrimeNumbers {
 		}
 	}
 
-	public static Set<Integer> getPrimeNumbersAsc(final int start, final int end) {
-		final LinkedHashSet<Integer> primeNumbers = new LinkedHashSet<>();
-		for (int i = start; i <= end; i++) {
+	public static Set<Long> getPrimeNumbersAsc(final long start, final long end) {
+		final LinkedHashSet<Long> primeNumbers = new LinkedHashSet<>();
+		for (long i = start; i <= end; i++) {
 			if (isPrime(i)) {
 				primeNumbers.add(i);
 			}
@@ -33,9 +33,9 @@ public class PrimeNumbers {
 		return primeNumbers;
 	}
 
-	public static Set<Integer> getPrimeNumbersDesc(final int end, final int start) {
-		final LinkedHashSet<Integer> primeNumbers = new LinkedHashSet<>();
-		for (int i = end; i >= start; i--) {
+	public static Set<Long> getPrimeNumbersDesc(final long end, final long start) {
+		final LinkedHashSet<Long> primeNumbers = new LinkedHashSet<>();
+		for (long i = end; i >= start; i--) {
 			if (isPrime(i)) {
 				primeNumbers.add(i);
 			}
@@ -43,9 +43,9 @@ public class PrimeNumbers {
 		return primeNumbers;
 	}
 
-	public static Set<Integer> getNonPrimeNumbersAsc(final int start, final int end) {
-		final LinkedHashSet<Integer> nonPrimeNumbers = new LinkedHashSet<>();
-		for (int i = start; i <= end; i++) {
+	public static Set<Long> getNonPrimeNumbersAsc(final long start, final long end) {
+		final LinkedHashSet<Long> nonPrimeNumbers = new LinkedHashSet<>();
+		for (long i = start; i <= end; i++) {
 			if (!isPrime(i)) {
 				nonPrimeNumbers.add(i);
 			}
@@ -53,9 +53,9 @@ public class PrimeNumbers {
 		return nonPrimeNumbers;
 	}
 
-	public static Set<Integer> getNonPrimeNumbersDesc(final int end, final int start) {
-		final LinkedHashSet<Integer> nonPrimeNumbers = new LinkedHashSet<>();
-		for (int i = end; i >= start; i--) {
+	public static Set<Long> getNonPrimeNumbersDesc(final long end, final long start) {
+		final LinkedHashSet<Long> nonPrimeNumbers = new LinkedHashSet<>();
+		for (long i = end; i >= start; i--) {
 			if (!isPrime(i)) {
 				nonPrimeNumbers.add(i);
 			}
@@ -63,19 +63,43 @@ public class PrimeNumbers {
 		return nonPrimeNumbers;
 	}
 
-	public static Set<Integer> getPrimeNumbersAsc(final int end) {
+	public static long getNextPrime(final long number) {
+		boolean got = false;
+		long n = number + 1;
+		while (!got) {
+			got = isPrime(n);
+			if (!got) {
+				n++;
+			}
+		}
+		return n;
+	}
+
+	public static long getPreviousPrime(final long number) {
+		boolean got = false;
+		long n = number - 1;
+		while (!got) {
+			got = isPrime(n);
+			if (!got) {
+				n--;
+			}
+		}
+		return n;
+	}
+
+	public static Set<Long> getPrimeNumbersAsc(final long end) {
 		return getPrimeNumbersAsc(2, end);
 	}
 
-	public static Set<Integer> getNonPrimeNumbersAsc(final int end) {
+	public static Set<Long> getNonPrimeNumbersAsc(final long end) {
 		return getNonPrimeNumbersAsc(0, end);
 	}
 
-	public static Set<Integer> getPrimeNumbersDesc(final int end) {
+	public static Set<Long> getPrimeNumbersDesc(final long end) {
 		return getPrimeNumbersDesc(end, 2);
 	}
 
-	public static Set<Integer> getNonPrimeNumbersDesc(final int end) {
+	public static Set<Long> getNonPrimeNumbersDesc(final long end) {
 		return getNonPrimeNumbersDesc(end, 0);
 	}
 
