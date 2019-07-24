@@ -87,6 +87,16 @@ public class PrimeNumbers {
 		return n;
 	}
 
+	public static Set<Long> getFirstXPrimeNumbers(final long x) {
+		final LinkedHashSet<Long> primeNumbers = new LinkedHashSet<>();
+		for (long i = 2; primeNumbers.size() < x; i++) {
+			if (isPrime(i)) {
+				primeNumbers.add(i);
+			}
+		}
+		return primeNumbers;
+	}
+
 	public static Set<Long> getPrimeNumbersAsc(final long end) {
 		return getPrimeNumbersAsc(2, end);
 	}
